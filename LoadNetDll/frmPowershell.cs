@@ -36,7 +36,6 @@ namespace LoadNetDll
                         if (outputItem != null)
                         {
                             Console.WriteLine(outputItem.ToString());
-                            //textBox1.Text += outputItem.ToString() + "\r\n";
                             textBox1.AppendText(outputItem.ToString() + "\r\n");
                         }
                     }

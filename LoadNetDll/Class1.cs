@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Reflection;
-using RGiesecke.DllExport;
 using System.Runtime.InteropServices;
 
 using System.Windows.Forms;
@@ -16,9 +15,9 @@ namespace LoadNetDll
 {
     public class Class1
     {
+
         // Executes the powershell-interface
-        [DllExport("powershell", CallingConvention = CallingConvention.Cdecl)]
-        public static void powershell(long hwnd, long hinst, string lpszCmdLine, int nCmdShow)
+        public void powershell(string lpszCmdLine)
         {
 
             frmPowershell frm = new frmPowershell();
@@ -27,8 +26,7 @@ namespace LoadNetDll
         }
 
         // Just shows a test messagebox
-        [DllExport("test", CallingConvention = CallingConvention.Cdecl)]
-        public static void test(long hwnd, long hinst, string lpszCmdLine, int nCmdShow)
+        public void test(string lpszCmdLine)
         {
             MessageBox.Show(lpszCmdLine);
         }
@@ -50,8 +48,7 @@ namespace LoadNetDll
         }
 
         // Just shell-executes a file
-        [DllExport("execute", CallingConvention = CallingConvention.Cdecl)]
-        public static void execute(long hwnd, long hinst, string lpszCmdLine, int nCmdShow)
+        public void execute(string lpszCmdLine)
         {
             string[] strArguments = lpszCmdLine.Split(new char[] { ' ' });
             string strCommandLine = getCommandLine(lpszCmdLine);
@@ -67,8 +64,7 @@ namespace LoadNetDll
         // Loads a .NET executable and runs it (in the context of rundll32).
         // Example:
         // rundll32 LoadNetDll.dll,loadnet C:\executable_dotnet_app.exe parameter1 parameter2
-        [DllExport("loadnet", CallingConvention = CallingConvention.Cdecl)]
-        public static void loadnet(long hwnd, long hinst, string lpszCmdLine, int nCmdShow)
+        public void loadnet(string lpszCmdLine)
         {
             string[] strArguments = lpszCmdLine.Split(new char[] { ' ' });
             string[] strCpy = new string[] {  };  
